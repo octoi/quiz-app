@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/api/api.dart';
+import 'package:quiz_app/screens/question_screen.dart';
 import 'package:quiz_app/utils/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,9 +30,13 @@ class HomeScreen extends StatelessWidget {
                   primary: appPrimaryColor,
                   backgroundColor: appPrimaryAccentColor,
                 ),
-                onPressed: () async {
-                  var questions = await getData();
-                  print(questions);
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return QuestionScreen();
+                    }),
+                  );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2,
