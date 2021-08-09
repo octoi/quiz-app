@@ -23,9 +23,23 @@ class HomeScreen extends StatelessWidget {
                 color: appSecondaryAccentColor,
                 size: MediaQuery.of(context).size.width / 5,
               ),
+              SizedBox(height: 30.0),
               TextButton(
+                style: TextButton.styleFrom(
+                  primary: appPrimaryColor,
+                  backgroundColor: appPrimaryAccentColor,
+                ),
                 onPressed: () {},
-                child: Text('Start Quiz'),
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: 35.0,
+                  child: Center(
+                    child: Text(
+                      'Start Quiz',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               )
             ],
           ),
