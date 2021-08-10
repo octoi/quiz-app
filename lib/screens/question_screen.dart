@@ -94,30 +94,33 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 SizedBox(height: 20.0),
                 Column(children: getOptions()),
                 SizedBox(height: 30.0),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: appPrimaryColor,
-                    backgroundColor: appPrimaryAccentColor,
-                  ),
-                  onPressed: () async {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return QuestionScreen(
-                          index: widget.index + 1,
-                          score: score,
-                          questions: widget.questions,
-                        );
-                      }),
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 45.0,
-                    child: Center(
-                      child: Text(
-                        'Next',
-                        style: TextStyle(color: Colors.white),
+                Visibility(
+                  visible: clickedIndex != -1,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      primary: appPrimaryColor,
+                      backgroundColor: appPrimaryAccentColor,
+                    ),
+                    onPressed: () async {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return QuestionScreen(
+                            index: widget.index + 1,
+                            score: score,
+                            questions: widget.questions,
+                          );
+                        }),
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 45.0,
+                      child: Center(
+                        child: Text(
+                          isLastQuestion ? 'View Score' : 'Next',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
