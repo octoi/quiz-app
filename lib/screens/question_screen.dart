@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/Question.dart';
 import 'package:quiz_app/utils/colors.dart';
+import 'package:quiz_app/widgets/question_card.dart';
 
 class QuestionScreen extends StatefulWidget {
   final int index;
@@ -20,6 +21,7 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   bool isLastQuestion = false;
+  bool isCompleted = false;
   Question question = Question(
     question: 'sample',
     answer: 'sample',
@@ -43,7 +45,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
         elevation: 0.0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -61,6 +63,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20.0),
+                Column(
+                  children: question.options.map((option) {
+                    return QuestionCard(option: option);
+                  }).toList(),
+                )
               ],
             ),
           ),
