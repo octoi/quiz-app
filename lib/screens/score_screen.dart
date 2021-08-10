@@ -33,7 +33,30 @@ class ScoreScreen extends StatelessWidget {
                   backgroundColor: appPrimaryColor,
                   child: Center(
                     child: Column(
-                      children: [Text('')],
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '$score',
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Container(
+                          color: Colors.white,
+                          width: (MediaQuery.of(context).size.width / 3) - 10,
+                          height: 1.0,
+                          margin: EdgeInsets.symmetric(vertical: 10.0),
+                        ),
+                        Text(
+                          '$total',
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
