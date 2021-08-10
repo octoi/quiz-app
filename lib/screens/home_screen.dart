@@ -3,8 +3,15 @@ import 'package:quiz_app/api/api.dart';
 import 'package:quiz_app/screens/question_screen.dart';
 import 'package:quiz_app/utils/colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,9 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: appPrimaryAccentColor,
                 ),
                 onPressed: () async {
+                  setState(() => isLoading = true);
                   var _questions = await getData();
+                  setState(() => isLoading = false);
 
                   Navigator.pushReplacement(
                     context,
@@ -49,10 +58,19 @@ class HomeScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 2,
                   height: 35.0,
                   child: Center(
-                    child: Text(
-                      'Start Quiz',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: !isLoading
+                        ? Text(
+                            'Start Quiz',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        : SizedBox(
+                            width: 20.0,
+                            height: 20.0,
+                            child: CircularProgressIndicator(
+                              color: Colors.white.withOpacity(0.8),
+                              strokeWidth: 2.0,
+                            ),
+                          ),
                   ),
                 ),
               )
