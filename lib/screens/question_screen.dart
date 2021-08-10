@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/Question.dart';
+import 'package:quiz_app/screens/score_screen.dart';
 import 'package:quiz_app/utils/colors.dart';
 import 'package:quiz_app/widgets/question_card.dart';
 
@@ -105,11 +106,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return QuestionScreen(
-                            index: widget.index + 1,
-                            score: score,
-                            questions: widget.questions,
-                          );
+                          return !isLastQuestion
+                              ? QuestionScreen(
+                                  index: widget.index + 1,
+                                  score: score,
+                                  questions: widget.questions,
+                                )
+                              : ScoreScreen(
+                                  score: score,
+                                  total: widget.questions.length,
+                                );
                         }),
                       );
                     },
