@@ -36,6 +36,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> getOptions() {
+      return question.options.map((option) {
+        return QuestionCard(
+          option: option,
+          isCorrect: option == question.answer,
+        );
+      }).toList();
+    }
+
     return Scaffold(
       backgroundColor: appPrimaryColor,
       appBar: AppBar(
@@ -45,29 +54,24 @@ class _QuestionScreenState extends State<QuestionScreen> {
         elevation: 0.0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    question.question,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
+                Text(
+                  question.question,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
                   ),
                 ),
                 SizedBox(height: 20.0),
                 Column(
-                  children: question.options.map((option) {
-                    return QuestionCard(option: option);
-                  }).toList(),
+                  children: getOptions(),
                 )
               ],
             ),

@@ -18,6 +18,8 @@ getData() async {
         questionItem['correct_answer'],
       ];
 
+      _options.sort();
+
       Question newQuestion = Question(
         question: questionItem['question'],
         answer: questionItem['correct_answer'],
