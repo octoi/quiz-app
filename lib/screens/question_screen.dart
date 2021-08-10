@@ -20,6 +20,9 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+  int clickedIndex = -1;
+  int score = 0;
+
   bool isLastQuestion = false;
   bool isCompleted = false;
   Question question = Question(
@@ -32,17 +35,34 @@ class _QuestionScreenState extends State<QuestionScreen> {
   void initState() {
     super.initState();
     question = widget.questions[widget.index];
+    score = widget.score;
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> getOptions() {
-      return question.options.map((option) {
-        return QuestionCard(
-          option: option,
-          isCorrect: option == question.answer,
-        );
-      }).toList();
+      List<Widget> _widgets = [];
+
+      for (int i = 0; i < question.options.length; i++) {
+        String option = question.options[i];
+        _widgets.add(GestureDetector(
+          onTap: () {
+            if (clickedIndex != -1) return;
+            setState(() {
+              clickedIndex = i;
+              if (option == question.answer) score++;
+            });
+          },
+          child: QuestionCard(
+            option: option,
+            isCorrect: option == question.answer,
+            isQuestionClicked: clickedIndex == i ||
+                (clickedIndex != -1 && option == question.answer),
+          ),
+        ));
+      }
+
+      return _widgets;
     }
 
     return Scaffold(
