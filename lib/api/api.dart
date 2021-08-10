@@ -1,7 +1,9 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import 'package:html_unescape/html_unescape.dart';
 import 'package:quiz_app/model/Question.dart';
+
+var unescape = new HtmlUnescape();
 
 getData() async {
   try {
@@ -21,8 +23,8 @@ getData() async {
       _options.sort();
 
       Question newQuestion = Question(
-        question: questionItem['question'],
-        answer: questionItem['correct_answer'],
+        question: _parse(questionItem['question']),
+        answer: _parse(questionItem['correct_answer']),
         options: _options,
       );
 
@@ -34,4 +36,8 @@ getData() async {
     print(err);
     return [];
   }
+}
+
+String _parse(String htmlString) {
+  return unescape.convert(htmlString);
 }
