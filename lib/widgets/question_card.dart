@@ -23,6 +23,7 @@ class _QuestionCardState extends State<QuestionCard> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15.0),
+      margin: EdgeInsets.only(top: 15.0),
       decoration: BoxDecoration(
         color: appSecondaryColor,
         borderRadius: BorderRadius.circular(10.0),
