@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/home_screen.dart';
 import 'package:quiz_app/utils/colors.dart';
 
 class ScoreScreen extends StatelessWidget {
@@ -57,6 +58,31 @@ class ScoreScreen extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30.0),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: appPrimaryColor,
+                  backgroundColor: appPrimaryAccentColor,
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return HomeScreen();
+                    }),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: 35.0,
+                  child: Center(
+                    child: Text(
+                      'Restart Quiz',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
